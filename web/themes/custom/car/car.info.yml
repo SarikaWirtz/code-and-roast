@@ -1,0 +1,29 @@
+name: Code and Roast
+type: theme
+description: Custom base theme.
+base theme: stable9
+core_version_requirement: ^10 ||^11
+
+regions:
+  header_mobile: Mobile header
+  header_utility: Utility header
+  header_main: Header
+  search: Search
+  highlighted: Highlighted
+  page_top: Page top
+  page_bottom: Page bottom
+  sidebar_left: Sidebar left
+  sidebar_right: Sidebar right
+  content: Content
+  footer_top: Footer top
+  footer_bottom: Footer bottom
+
+libraries:
+  - car/tailwind
+  - car/global-styling
+
+components:
+  namespaces:
+    patterns:
+      - ./templates/_patterns
+

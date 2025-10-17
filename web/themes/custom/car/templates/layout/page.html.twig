@@ -1,0 +1,132 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template in this directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ *
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - messages: Status and error messages. Should be displayed prominently.
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - page.header_mobile: Items for the header mobile region.
+ * - page.header_main: Items for the header main region.
+ * - page.header_utility: Items for the header utility region.
+ * - page.highlighted: Items for the highlighted content region.
+ * - page.messages: Drupal system messages.
+ * - page.help: Dynamic help text, mostly for admin pages.
+ * - page.sidebar_left: The left sidebar content of the current page.
+ * - page.sidebar_right: The right sidebar content of the current page.
+ * - page.content: The main content of the current page.
+ * - page.footer_top: Items for the footer top region.
+ * - page.footer_bottom: Items for the footer bottom region.
+ * - page.breadcrumb: Items for the breadcrumb region.
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+
+<div class="page-wrapper relative">
+  {# Page content #}
+  <div class="layout-container flex flex-col min-h-screen justify-between pt-[86px] lg:pt-9">
+  {# Header: branding and menus #}
+    {% embed '@patterns/_header.twig' %}
+      {% block header_utility %}
+        {{ page.header_utility }}
+      {% endblock header_utility %}
+
+      {% block branding_markup %}
+        <a href="{{ path('<front>') }}" rel="home" class="logo">
+          <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" class="h-lg laptop:h-10" />
+        </a>
+      {% endblock branding_markup %}
+
+      {% block header_main %}
+        {{ page.header_main }}
+      {% endblock header_main %}
+
+      {% block search %}
+        {{ page.search }}
+      {% endblock search %}
+
+      {% block header_mobile %}
+        {{ page.header_mobile }}
+      {% endblock header_mobile %}
+    {% endembed %}
+
+    {# Other regions to be displayed on the top of the page #}
+    {{ page.highlighted }}
+
+    {# Drupal system messages #}
+    {{ page.messages }}
+
+    <main role="main" class="flex-grow mb-auto">
+      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+      {% set sidebars_array = [] %}
+      {% if page.sidebar_left is not empty %}
+        {% set sidebars_array = sidebars_array|merge(['left']) %}
+      {% endif %}
+      {% if page.sidebar_right is not empty %}
+        {% set sidebars_array = sidebars_array|merge(['right']) %}
+      {% endif %}
+
+      {% if page.sidebar_left or page.sidebar_right %}
+        {% embed '@patterns/_sidebar.twig' with
+          {
+            sidebars_array: sidebars_array
+          }
+        %}
+          {% block sidebar_left %}
+            {{ page.sidebar_left }}
+          {% endblock sidebar_left %}
+
+          {% block content %}
+            {{ page.content }}
+          {% endblock content %}
+
+          {% block sidebar_right %}
+            {{ page.sidebar_right }}
+          {% endblock sidebar_right %}
+        {% endembed %}
+      {% else %}
+        <section class="layout-content relative">
+         {{ page.content }}
+        </section>
+      {% endif %}
+
+    </main>
+
+    {# Footer regions #}
+    {% embed '@patterns/_footer.twig' %}
+      {% block footer_top %}
+        {{ page.footer_top }}
+      {% endblock footer_top %}
+
+      {% block footer_bottom %}
+        {{ page.footer_bottom }}
+      {% endblock footer_bottom %}
+    {% endembed %}
+
+  </div>{# /.layout-container #}
+</div>{# /.page-wrapper #}

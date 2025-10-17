@@ -1,0 +1,15 @@
+{% set header_attributes = create_attribute() %}
+
+<header id="header" {{ header_attributes.addClass(extraClasses) }}>
+  <div class="header-content container mx-auto sm:px-2 md:px-3 lg:px-4">
+    <div class="header-item flex justify-between">
+      <div class="header-branding">
+        <span>{{ drupal_entity('block', 'car_site_branding') }}</span>
+      </div>
+      <div class="flex">
+        <span>{{ drupal_entity('block', 'car_main_menu') }}</span>
+        <span>{{ drupal_entity('block', 'car_search_form_narrow') }}</span>
+      </div>
+    </div>
+  </div>
+</header>

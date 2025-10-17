@@ -1,0 +1,5 @@
+@reference "../tailwind.css";
+
+nav.header-main-menu ul {
+  @apply flex gap-8;
+}

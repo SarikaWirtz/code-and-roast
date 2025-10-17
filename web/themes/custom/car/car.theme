@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the car theme.
+ */
+
+/**
+ * Place any preprocess functions in .theme.inc files, or make a new one.
+ *
+ * The .theme files should contain logic for the elements in their corresponding
+ * template directories (ie 'blocks.theme.inc' should modify templates in
+ * 'templates/blocks'.)
+ *
+ * Since preprocess templates like block or paragraphs can grow a lot,
+ * please consider splitting the specific template preprocess function of each
+ * one into a smaller files like
+ * "preprocess/field__paragraph__field_buttons.inc".
+ * They will be automatically loaded.
+ */
+
+// Autoload all .theme.inc files.
+foreach (glob(DRUPAL_ROOT . "/themes/custom/car/src/includes/*.theme.inc") as $filename) {
+  include_once $filename;
+}

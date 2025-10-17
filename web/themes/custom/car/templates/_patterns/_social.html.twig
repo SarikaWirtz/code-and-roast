@@ -1,0 +1,27 @@
+{# {{ attach_library('volcano/qz-icon') }}
+{{ attach_library('volcano/qz-link') }} #}
+
+{% set socials = [
+  { name: 'linkedin', url: '#'},
+  { name: 'facebook', url: '#'},
+  { name: 'instagram', url: '#'},
+  { name: 'youtube', url: '#'},
+]%}
+
+{% set social_attributes = create_attribute() %}
+{% set social_classes = [
+  extraClasses
+] %}
+
+<div{{ social_attributes.addClass(social_classes) }}>
+  <ul class="flex gap-7">
+    {% for social in socials %}
+      <li>
+        <a href="{{ social.url }}" rel="nofollow" target="_blank">
+          {# <qz-icon color="{{ color }}" name="{{ social.name }}" width="14"></qz-icon> #}
+          {{ social.name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
