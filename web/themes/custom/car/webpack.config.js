@@ -44,8 +44,8 @@ const scripts = glob.sync('./{src/js,js}/**/*.js').reduce((all, name) => {
 
 module.exports = (env) => {
   const themeName = env.theme || 'car'
-  const baseLibrariesFileName = path.join(process.cwd(), `${themeName}.base.libraries.yml`)
-  const librariesFileName = path.join(process.cwd(), `${themeName}.libraries.yml`)
+  //const baseLibrariesFileName = path.join(process.cwd(), `${themeName}.base.libraries.yml`)
+  //const librariesFileName = path.join(process.cwd(), `${themeName}.libraries.yml`)
    
   return {
     entry: {

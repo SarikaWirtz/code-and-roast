@@ -5,7 +5,7 @@ body {
 }
 
 .logo {
-    @apply max-w-[10rem];
+    @apply max-w-[3rem];
 }
 
 /* nav.header-main-menu ul {
