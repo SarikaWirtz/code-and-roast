@@ -48,7 +48,7 @@
 
 <div class="page-wrapper relative">
   {# Page content #}
-  <div class="layout-container flex flex-col min-h-screen justify-between pt-[86px] lg:pt-9">
+  <div class="layout-container flex flex-col min-h-screen justify-between">
   {# Header: branding and menus #}
     {% embed '@patterns/_header.twig' %}
       {% block header_utility %}
@@ -118,7 +118,7 @@
     </main>
 
     {# Footer regions #}
-    {% embed '@patterns/_footer.twig' %}
+    {# {% embed '@patterns/_footer.twig' %} #}
       {% block footer_top %}
         {{ page.footer_top }}
       {% endblock footer_top %}
@@ -126,7 +126,7 @@
       {% block footer_bottom %}
         {{ page.footer_bottom }}
       {% endblock footer_bottom %}
-    {% endembed %}
+    {# {% endembed %} #}
 
   </div>{# /.layout-container #}
 </div>{# /.page-wrapper #}

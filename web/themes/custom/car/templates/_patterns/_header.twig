@@ -1,15 +1,41 @@
 {% set header_attributes = create_attribute() %}
 
+{% set extraClasses = [
+  'border-b border-gray-400',
+]%}
+
+{% set preHeaderClasses = [
+  'pre-header flex items-center justify-end',
+  'bg-neutral-light border-b border-gray-300',
+  'py-1',
+]%}
+
+{% set headerContentClasses = [
+  'header-content h-16 block bg-secondary text-text flex justify-between',
+]%}
+
 <header id="header" {{ header_attributes.addClass(extraClasses) }}>
-  <div class="header-content container mx-auto sm:px-2 md:px-3 lg:px-4">
-    <div class="header-item flex justify-between">
+  <span{{ create_attribute().addClass(preHeaderClasses) }}>
+    <div class="container flex justify-end max-h-[46px]">
+      <span class="pre-header-info flex gap-2 items-center">
+        <a href="#" class="button button-facebook">
+          {{ 'Facebook'|t }}
+        </a>
+        <a href="#" class="button button-linkedin">
+            {{ 'LinkedIn'|t }}
+        </a>
+      </span>
+    </div>
+  </span>
+  
+  <span{{ create_attribute().addClass(headerContentClasses) }}>
+    <div class="container header-item flex justify-between">
       <div class="header-branding">
         <span>{{ drupal_entity('block', 'car_site_branding') }}</span>
       </div>
-      <div class="flex">
+      <div class="flex flex-col justify-center">
         <span>{{ drupal_entity('block', 'car_main_menu') }}</span>
-        <span>{{ drupal_entity('block', 'car_search_form_narrow') }}</span>
       </div>
     </div>
-  </div>
+  </span>
 </header>
