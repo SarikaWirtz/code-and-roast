@@ -118,6 +118,7 @@
     </main>
 
     {# Footer regions #}
+  <footer class="bg-secondary text-text py-8">
     {# {% embed '@patterns/_footer.twig' %} #}
       {% block footer_top %}
         {{ page.footer_top }}
@@ -127,6 +128,6 @@
         {{ page.footer_bottom }}
       {% endblock footer_bottom %}
     {# {% endembed %} #}
-
+  </footer>
   </div>{# /.layout-container #}
 </div>{# /.page-wrapper #}

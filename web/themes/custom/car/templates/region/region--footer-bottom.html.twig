@@ -1,0 +1,5 @@
+{% set footer_top_attributes = create_attribute() %}
+
+<div{{ footer_top_attributes.addClass("grid md:grid-cols-3 items-start justify-items-center") }}>
+  {{ content }}
+</div>
