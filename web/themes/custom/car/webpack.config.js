@@ -6,9 +6,10 @@ const relativeRequire = (name) => require(path.resolve(process.cwd(), `node_modu
 
 const { CleanWebpackPlugin } = relativeRequire('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CompressionPlugin = require('compression-webpack-plugin');
+// const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const DrupalLibrariesPlugin = relativeRequire('drupal-libraries-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 // const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const RemoveEmptyScriptsPlugin = relativeRequire('webpack-remove-empty-scripts');
 const glob = relativeRequire('glob');
@@ -42,10 +43,11 @@ const scripts = glob.sync('./{src/js,js}/**/*.js').reduce((all, name) => {
 }, {})
 
 
-module.exports = (env) => {
+module.exports = (env, argv) => {
   const themeName = env.theme || 'car'
-  //const baseLibrariesFileName = path.join(process.cwd(), `${themeName}.base.libraries.yml`)
-  //const librariesFileName = path.join(process.cwd(), `${themeName}.libraries.yml`)
+  const isProd = argv.mode === 'production';
+  const baseLibrariesFileName = path.join(process.cwd(), `${themeName}.base.libraries.yml`)
+  const librariesFileName = path.join(process.cwd(), `${themeName}.libraries.yml`)
    
   return {
     entry: {
@@ -63,18 +65,11 @@ module.exports = (env) => {
     extensions: ['.js', '.jsx', '.css', '.scss'],
     },
     optimization: {
-      minimize: true,
+      minimize: isProd,
       minimizer: [
-        (compiler) => {
-          const TerserPlugin = require('terser-webpack-plugin');
-          new TerserPlugin({
-            terserOptions: {
-              compress: true,
-            }
-          }).apply(compiler);
-        },
-      ]
-
+        new TerserPlugin(),
+        new CssMinimizerPlugin(),
+      ],
     },
     module: {
       rules: [
@@ -96,14 +91,8 @@ module.exports = (env) => {
           test: /\.css$/,
           exclude: /tailwind.css$/,
           use: [
-            { loader: MiniCssExtractPlugin.loader },
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'css/[name].[ext]',
-                esModule: false
-              }
-            },
+            MiniCssExtractPlugin.loader,
+            'css-loader',
             'postcss-loader'
           ]
         },
@@ -129,9 +118,9 @@ module.exports = (env) => {
       new CleanWebpackPlugin(),
       new RemoveEmptyScriptsPlugin(),
       new MiniCssExtractPlugin(),
-      new CompressionPlugin({
-        test: /\.js?$/i
-      }),
+      // new CompressionPlugin({
+      //   test: /\.js?$/i
+      // }),
     ]
 
   }
