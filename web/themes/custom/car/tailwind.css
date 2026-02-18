@@ -1,8 +1,33 @@
 @import "tailwindcss";
+/* @config "./tailwind.config.js"; */
 
 @theme {
+  /* colors */
+  --color-neutral-light: #F4F4F4;
+  --color-primary: #2563EB;
+  --color-secondary: #7B4B33; /* #F87171 */
+  --color-accent: #22D3EE;
+  --color-bg-light: #F8FAFC;
+  --color-bg-dark: #0F172A;
+  --color-text: #F9FAFB;
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #64748B; 
+  --color-link: #7C3AED;
+
+  /* [data-theme='dark'] 
+
+  --color-bg: #1E1E2F;
+  --color-text: #F9FAFB;
+  --color-text-secondary: #A1A1AA;
+  --color-primary: #6366F1;
+  --color-secondary: #9C6644;
+  --color-accent: #34D399; 
+  */
+
+
   --breakpoint-*: initial;
   --breakpoint-sm: 480px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1536px;
 }

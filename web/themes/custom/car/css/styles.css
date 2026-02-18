@@ -1,11 +1,11 @@
 @reference "../tailwind.css";
 
-body {
-  @apply bg-red-200;
+.container {
+  @apply w-full lg:max-w-[1250px] px-3 mx-auto my-0;
 }
 
 .logo {
-    @apply max-w-[10rem];
+    @apply max-w-[3rem];
 }
 
 /* nav.header-main-menu ul {
