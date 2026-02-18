@@ -1,0 +1,8 @@
+uuid: ffe1af8d-dce9-4299-b291-315d32f3fb78
+langcode: en-gb
+status: true
+dependencies: {  }
+id: get-in-touch
+label: 'Get In Touch'
+description: 'user can fill contact form to get in touch with us.'
+locked: false
