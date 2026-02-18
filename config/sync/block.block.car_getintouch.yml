@@ -1,0 +1,25 @@
+uuid: 33ab67e3-6b4f-4688-a8cc-065be3a8efbb
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - system.menu.get-in-touch
+  module:
+    - system
+  theme:
+    - car
+id: car_getintouch
+theme: car
+region: footer_bottom
+weight: -7
+provider: null
+plugin: 'system_menu_block:get-in-touch'
+settings:
+  id: 'system_menu_block:get-in-touch'
+  label: 'Get In Touch'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

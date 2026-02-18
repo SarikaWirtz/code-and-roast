@@ -1,0 +1,25 @@
+uuid: ed3d8b6a-cf16-442e-9077-b48db2d02b3e
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - car
+id: car_footermenu
+theme: car
+region: footer_bottom
+weight: -6
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Footer Menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }
